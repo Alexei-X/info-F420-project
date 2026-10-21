@@ -1,0 +1,35 @@
+\documentclass{article}
+\usepackage{url}
+\usepackage{cite}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\title{INFO-F420: Project Proposal \\ Computing Smallest Convex Intersecting Polygon}
+\author{Bataille Alex\\ Bouhdid Wassim}
+\begin{document}
+\maketitle
+\section{Introduction}
+The topic we chose is the computation of a smallest convex intersecting polygon for a set of objects in the plane \cite{Antoniadis_deBerg_Kisfaludi-Bak_Skarlatos_2025}. 
+A polygon $C$ is an intersecting polygon for a set $\mathcal{O}$ of objects in $\mathbb{R}^2$ if $C$ intersects each object in $\mathcal{O}$, where the polygon includes 
+its interior. The term ``smallest'' can refer to either the minimum-perimeter or the minimum-area convex intersecting polygon. 
+
+The paper we chose \cite{Antoniadis_deBerg_Kisfaludi-Bak_Skarlatos_2025} presents an FPTAS for both problems for the case where $\mathcal{O}$ is a set of possibly intersecting convex polygons in the plane of total complexity $n$.
+The exact segment algorithm is used to compute a smallest convex intersecting polygon for a set of line segments in the plane. The algorithm is based on a dynamic programming approach, and it is shown that the problem can be solved in polynomial time for a fixed number of segments.
+
+\section{Project Objectives}
+We want to understand the paper and the corresponding literature deeply enough, and grasp the main ideas of the algorithms, especially the exact segment 
+algorithm and its analysis. 
+This would be done by making an interactive webpage that allows the user to play with the different constructions and objects of the paper. 
+
+\section{Work Distribution}
+This is a group project, consisting of two members, Alex and Wassim. The way we will distribute the work is as follows: 
+\begin{itemize}
+    \item Wassim will be in charge of the understanding of the algorithm, focusing on the main ideas and the analysis.
+    \item Alex will be in charge of the study of the literature, and the mathematical background of the problem.
+\end{itemize}
+Of course, both of us will work together and share our findings, such that we can both understand the project in its entirety. 
+
+\bibliography{biblio}{}
+\bibliographystyle{plain}
+
+\end{document}

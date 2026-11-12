@@ -4,19 +4,48 @@
 
 </src>
 <head>
-  <title>Page Title</title>
+  <title>Introduction Page</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<h1>
-    COMPUTING SMALLEST CONVEX INTERSECTING POLYGONS∗
-</h1>
+<div id="title">
+    <h1>
+        Computing Smallest Convex Intersecting Polygon for a Set of Lines 
+    </h1>
+</div>
 
-<a href="demo.html">
+<div class="content-row">
+    <div id="introduction">
+        <h3>Introduction</h3>
+        <p>
+            The goal of this project is to implement an algorithm to compute the smallest-perimeter intersecting
+            polygon for a set of segments in the plane. <br>
+            This algorithm, which is an FPTAS, was presented in the paper ``Antonios Antoniadis, Mark de Berg, Sándor Kisfaludi-Bak, 
+            and Antonis Skarlatos. Computing smallest convex intersecting polygons´´ 
+            <br>(DOI : <a href="https://doi.org/10.20382/jocg.v16i1a6"> https://doi.org/10.20382/jocg.v16i1a6</a>)
+            <br>This paper also presents an approximation algorithm for the minimum-area intersecting polygon, but we made the choice to 
+            focus only on the minimum-perimeter algorithm, as this algorithm is exact and looked interesting to implement. 
+        </p>
+    </div>
 
-<button>
-    Demo
-</button>
-</a>
+    <div id="illustration">
+        <h3>Illustration</h3>
+        <img src="images/illustration.png" alt="illustration image">
+    </div>
+</div>
+
+<div id="demonstration">
+    <h3>Demonstration</h3>
+    <p>
+        The following demonstration allows the user to play with the algorithm and see the different 
+        steps in order to compute such a polygon. 
+    </p>
+    <a href="demo.html">
+        <button id="demo_button">
+            Demo
+        </button>
+    </a>
+</div>
 
 </body>
 

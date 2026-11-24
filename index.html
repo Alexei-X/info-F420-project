@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Introduction Page</title>
+  <title>Home Page</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -16,27 +16,27 @@
     <div class="introduction">
         <h3>Introduction</h3>
         <p>
-           The goal of this project is to implement an algorithm to compute the smallest-perimeter intersecting
+           The goal of this project is to understand and partially implement an algorithm to compute the smallest-perimeter intersecting
             polygon for a set of segments in the plane. <br>
             This algorithm, which is an FPTAS, was presented in the paper ``Antonios Antoniadis, Mark de Berg, Sándor Kisfaludi-Bak, 
             and Antonis Skarlatos. Computing smallest convex intersecting polygons´´ 
             <br>(DOI : <a href="https://doi.org/10.20382/jocg.v16i1a6"> https://doi.org/10.20382/jocg.v16i1a6</a>)
             <br>This paper also presents an approximation algorithm for the minimum-area intersecting polygon, but we made the choice to 
-            focus only on the minimum-perimeter algorithm, as this algorithm is exact and looked interesting to implement. 
+            focus only on the minimum-perimeter algorithm, as this algorithm is exact and looked interesting to focus on. 
         </p>
     </div>
 
     <div id="illustration">
         <h3>Illustration</h3>
-        <img src="images/illustration.png" alt="illustration image">
+        <img src="images/general_polygon.png" alt="illustration image">
     </div>
 
     <div id="algorithm-explanation">
          <div class="parts">
 
-            <div id="illustration">
+            <div id="reduction">
                 <h3>Illustration</h3>
-                <img src="images/illustration.png" alt="illustration image">
+                <img src="images/reduction.png" alt="illustration image">
             </div>
 
             <div class="introduction">
@@ -69,7 +69,7 @@
 
             <div id="illustration">
                 <h3>Illustration</h3>
-                <img src="images/illustration.png" alt="illustration image">
+                <img src="images/subroutineII.png" alt="illustration image">
             </div>
 
             <div class="introduction">
@@ -96,10 +96,6 @@
                  </p>
             </div>
 
-            <div id="illustration">
-                <h3>Illustration</h3>
-                <img src="images/illustration.png" alt="illustration image">
-            </div>
         </div>
         
          <div class="finalPart">
@@ -117,21 +113,40 @@
 
     </div>
 
-    
+    <div id="demonstration">
+        <h3>Demonstration</h3>
+        <p>
+            The following demonstration contains the algorithms implemented during this project. It allows the user to draw a set of segments, then compute a minimum-perimeter 
+                    intersecting polygon for this given set. 
+        </p>
+        <a href="demo.html">
+            <button id="demo_button">
+                Demonstration
+            </button>
+        </a>
+    </div>
+    <div id="demonstration">
+        <h3>Project Report</h3>
+        <p>
+            A report has been written in addition to this webpage. It explains some claims in more details and contains the work distribution, as well as the bibliography of this project. 
+        </p>
+        <a href="report/report/main.pdf">
+            <button id="demo_button">Report</button>
+        </a>
+    </div>
+
+    <div id="demonstration">
+        <h3>AI Journal</h3>
+        <p>
+            AI has been extensively used throughout this project. Details about the usage of such tools are given in this AI journal. 
+        </p>
+        <a href="AIJournal.html">
+            <button id="demo_button">AI Journal</button>
+        </a>
+    </div>
+
 </div>
 
-<div id="demonstration">
-    <h3>Demonstration</h3>
-    <p>
-        The following demonstration allows the user to play with the algorithm and see the different 
-        steps in order to compute such a polygon. 
-    </p>
-    <a href="demo.html">
-        <button id="demo_button">
-            Demo
-        </button>
-    </a>
-</div>
 
 </body>
 

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AI Journal Page</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="title">
+    <h1>
+        AI Journal
+    </h1>
+</div>
+
+<div class="content-row">
+    <div class="introduction">
+        <h3>Models and Tools</h3>
+        <p>
+            The models we used are:
+        </p>
+        <ul>
+            <li>Alex : Microsoft Copilot (provided by ULB) and Euria Qwen 3.8 (the free version)</li>
+            <li>Wassim : Google Gemini (version ?)</li>
+        </ul>
+    </div>
+    
+    <div id="algorithm-explanation">
+        <div class="introduction">
+            <h3>Prompts and Responses</h3>
+            <p>
+                AI was mainly used for 2 parts : programming and tikz latex figure generation. An example of prompt/response is given for each type of use. 
+            </p>
+        </div>
+        <div class="introduction">
+            <h2>Programming Prompts</h2>
+            <p>
+                A first example is for generating code for Subroutine I. 
+            </p>
+            <ul>
+                <li>Prompt: <br>Write a function for Subroutine I based on this code. Explain the steps in details.</li>
+                <li>Response: <br>Copilot gave a code that was not working. Indeed, the polygon was taking endpoints of the polygons, even though Subroutine I is supposed to return 
+                        a polygon having no such vertices. </li>
+                <li>Prompt: <br>The code does not seem to work. The polygon is taking endpoints of segments, even though it is not supposed to. </li>
+                <li>Response: <br>Copilot could not find the reason its code for Subroutine I was not working correctly. We manually debugged the code and found the mistake, enabling us 
+                        to correct the code given by Copilot (which was mostly correct), and continue the project. </li>
+            </ul>
+            <p>
+                A second example is for adding features, that are not complicated to add per se, but could take a lot of time. We first had a code that was placing random 
+                        segments and then computing the polygon for this random set. We thought that it would be more interesting to allow the user to directly draw the segments 
+                        and then compute the polygon on this user-chosen set. 
+            </p>
+            <ul>
+                <li>Prompt: <br>Change this code so that the user can place segments himself. </li>
+                <li>Response: <br>Copilot wrote different code snippets, and told where to place them in the existing code. Once it was placed, the code worked directly, saving us 
+                        quite some time. </li>
+            </ul>
+            <h2>Tikz Figure Prompts</h2>
+            <p>
+                Being not familiar with the Tikz package on latex, we used Euria to generate latex figures of a given statement. 
+            </p>
+            <ul>
+                <li>Prompt: <br>Make a tikz picture for this statement : Can you make a tikz figure for this statement :
+To use this, we put the two anchor points u and v on the x-axis and turn each segment oi into a half-plane Hi. We then sort these half-planes clockwise according to their outward normal vectors, starting from (0, -1). Because the chain we are looking for is convex, any upper path from u to v that visits all Hi has to visit them in this sorted order (Lemma 22). Also, if the real optimal chain Γ does not touch any segment endpoints (except maybe u and v), it must be the exact same path as the TPP solution ΓH. Otherwise, mixing the two with λΓ + (1 - λ)ΓH would give an even shorter valid chain (Lemma 24). The only catch is that half-planes are infinite, so a TPP path might hit a half-plane without actually touching the original finite segment. We always have to check afterwards that all segments are really intersected.</li>
+                <li>Response: <br>Euria gave a latex snippet that, once compiled, gave a correct idea of the statement, but overall was incorrect. See the next image.</li>
+                <img src="images/euria_bad_fig.png" width="30%" height="auto" alt="">
+                        <br>
+                The tikz code being self explanatory, it was easy to correct this figure by ourselves, by changing directly the latex code, and recompiling the image. We obtained this result. 
+                <img src="images/reduction.png" width="30%" height="auto" alt="">
+            </ul>
+            <p>
+                Note that the same methodology was used to generate the figures in the pdf report. 
+            </p>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

@@ -6,12 +6,28 @@ html, body {
 
 h3 {
     font-family: 'Segoe UI', system-ui, sans-serif;
-    font-size: 1.25rem;
+    font-size: 1.4rem;
     font-weight: 600;
     color: #7f5af0;
     margin-bottom: 1rem;
     text-transform: uppercase;
     letter-spacing: 0.08em;
+}
+
+h2 {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: #7f5af0;
+    margin-bottom: 1rem;
+    letter-spacing: 0.08em;
+}
+
+ul {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    font-size: 1.3rem;
+    line-height: 1.75;
+    color: #e0e0e8;
 }
 
 #title {
@@ -53,7 +69,7 @@ h3 {
 
 .introduction p {
     font-family: 'Segoe UI', system-ui, sans-serif;
-    font-size: 1rem;
+    font-size: 1.3rem;
     line-height: 1.75;
     color: #e0e0e8;
 }
@@ -72,16 +88,36 @@ h3 {
 }
 
 #illustration {
-    flex: 1 1 300px;
+    flex: 1 1 100px;
     padding: 2rem 2.5rem;
     background: #16162a;
     border-left: 4px solid #7f5af0;
     border-radius: 0 8px 8px 0;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    align-items: center;
+    text-align: center;
 }
 
 #illustration img {
-    width: 100%;
+    width: 60%;
+    height: auto;
+    border-radius: 6px;
+    border: 1px solid #2a2a4a;
+}
+
+#reduction {
+    flex: 1 1 100px;
+    padding: 2rem 2.5rem;
+    background: #16162a;
+    border-left: 4px solid #7f5af0;
+    border-radius: 0 8px 8px 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    align-items: center;
+    text-align: center;
+}
+
+#reduction img {
+    width: 80%;
     height: auto;
     border-radius: 6px;
     border: 1px solid #2a2a4a;
@@ -99,7 +135,7 @@ h3 {
 
 #demonstration p {
     font-family: 'Segoe UI', system-ui, sans-serif;
-    font-size: 1rem;
+    font-size: 1.3rem;
     line-height: 1.75;
     color: #e0e0e8;
     margin-bottom: 1.5rem;

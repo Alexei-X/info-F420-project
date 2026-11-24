@@ -42,7 +42,7 @@ h3 {
     align-items: flex-start;
 }
 
-#introduction {
+.introduction {
     flex: 1 1 400px;
     padding: 2rem 2.5rem;
     background: #16162a;
@@ -51,21 +51,21 @@ h3 {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
-#introduction p {
+.introduction p {
     font-family: 'Segoe UI', system-ui, sans-serif;
     font-size: 1rem;
     line-height: 1.75;
     color: #e0e0e8;
 }
 
-#introduction a {
+.introduction a {
     color: #7f5af0;
     text-decoration: none;
     border-bottom: 1px dashed #7f5af0;
     transition: color 0.2s, border-color 0.2s;
 }
 
-#introduction a:hover {
+.introduction a:hover {
     font-size: 101%;
     color: #a78bfa;
     border-bottom-color: #a78bfa;
@@ -131,4 +131,9 @@ h3 {
 
 #demo_button:active {
     transform: translateY(0);
+}
+
+.parts{
+    display: flex;
+    margin: 20px;
 }

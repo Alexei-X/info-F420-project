@@ -1,24 +1,22 @@
 <!DOCTYPE html>
-<html>
-<src>
-
-</src>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
   <title>Introduction Page</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div id="title">
     <h1>
-        Computing Smallest Convex Intersecting Polygon for a Set of Lines 
+        Computing Smallest Convex Intersecting Polygon for a Set of Segments
     </h1>
 </div>
 
 <div class="content-row">
-    <div id="introduction">
+    <div class="introduction">
         <h3>Introduction</h3>
         <p>
-            The goal of this project is to implement an algorithm to compute the smallest-perimeter intersecting
+           The goal of this project is to implement an algorithm to compute the smallest-perimeter intersecting
             polygon for a set of segments in the plane. <br>
             This algorithm, which is an FPTAS, was presented in the paper ``Antonios Antoniadis, Mark de Berg, Sándor Kisfaludi-Bak, 
             and Antonis Skarlatos. Computing smallest convex intersecting polygons´´ 
@@ -32,6 +30,94 @@
         <h3>Illustration</h3>
         <img src="images/illustration.png" alt="illustration image">
     </div>
+
+    <div id="algorithm-explanation">
+         <div class="parts">
+
+            <div id="illustration">
+                <h3>Illustration</h3>
+                <img src="images/illustration.png" alt="illustration image">
+            </div>
+
+            <div class="introduction">
+                <h3>TPP problem reduction</h3>
+                <p>
+                    The two subroutines in the paper reduce parts of our problem to the <strong>Touring Polygons Problem (TPP)</strong>. Given a start point <i>u</i>, an end point <i>v</i>, and a list of convex polygons <i>P</i><sub>1</sub>, ..., <i>P</i><sub>k</sub>, TPP asks for the shortest path from <i>u</i> to <i>v</i> that visits each polygon in that exact order. For general convex polygons, TPP takes O(<i>nk</i><sup>2</sup> log <i>n</i>) time, which drops to O(<i>n</i><sup>3</sup> log <i>n</i>) when the polygons are just half-planes.
+                    <br><br>
+                    To use this, we put the two anchor points <i>u</i> and <i>v</i> on the x-axis and turn each segment <i>o<sub>i</sub></i> into a half-plane <i>H<sub>i</sub></i>. We then sort these half-planes clockwise according to their outward normal vectors, starting from (0, -1). Because the chain we are looking for is convex, any upper path from <i>u</i> to <i>v</i> that visits all <i>H<sub>i</sub></i> has to visit them in this sorted order (Lemma 22). Also, if the real optimal chain &Gamma; does not touch any segment endpoints (except maybe <i>u</i> and <i>v</i>), it must be the exact same path as the TPP solution &Gamma;<sub><i>H</i></sub>. Otherwise, mixing the two with &lambda;&Gamma; + (1 - &lambda;)&Gamma;<sub><i>H</i></sub> would give an even shorter valid chain (Lemma 24). The only catch is that half-planes are infinite, so a TPP path might hit a half-plane without actually touching the original finite segment. We always have to check afterwards that all segments are really intersected.
+                </p>
+            </div>
+
+            
+        </div>
+        <div class="parts">
+            <div class="introduction">
+                <h3>Subroutine 1</h3>
+                <p>
+                    <strong>Subroutine 1</strong> deals with the case where <i>C</i><sub>opt</sub> has no vertices in <i>Y</i> at all, so every corner of the polygon lies somewhere in the middle of a segment. If such a polygon exists, we can pick any of its vertices <i>u</i> as both the start and end point of a closed TPP loop.
+                    <br><br>
+                    This case turns out to be equivalent to the shortest watchman route problem. Using a known algorithm for watchman tours, we can find O(<i>n</i><sup>3</sup>) candidate "event points", and at least one of them is guaranteed to be a vertex of <i>C</i><sub>opt</sub>. For each candidate, we run the half-plane TPP solver in O(<i>n</i><sup>3</sup> log <i>n</i>) time. We then check in O(<i>n</i><sup>2</sup>) time that the output is convex, hits every segment, and has no vertices in <i>Y</i>. Testing all O(<i>n</i><sup>3</sup>) candidates gives a total time of <strong>O(<i>n</i><sup>6</sup> log <i>n</i>)</strong>.
+                 </p>
+            </div>
+
+            <div id="illustration">
+                <h3>Illustration</h3>
+                <img src="images/illustration.png" alt="illustration image">
+            </div>
+        </div>
+        <div class="parts">
+
+            <div id="illustration">
+                <h3>Illustration</h3>
+                <img src="images/illustration.png" alt="illustration image">
+            </div>
+
+            <div class="introduction">
+                <h3>Subroutine 2</h3>
+                <p>
+                    <strong>Subroutine 2</strong> handles a more specific case: we are already given two fixed points <i>u</i>, <i>v</i> &in; &#8477;<sup>2</sup> and a subset of segments <i>O'</i> &subseteq; <i>O</i>. The goal is to find the minimum-perimeter intersecting polygon that has <i>uv</i> as one of its edges and no other vertices in <i>Y</i>.
+                    <br><br>
+                    Since <i>u</i> and <i>v</i> are fixed from the start, we do not need to test O(<i>n</i><sup>3</sup>) starting points. We just run the half-plane TPP solver once from <i>u</i> to <i>v</i> on <i>O'</i>, verify that the polygon actually intersects all segments in <i>O'</i>, and make sure none of its intermediate vertices are in <i>Y</i>. This takes <strong>O(<i>n</i><sup>3</sup> log <i>n</i>)</strong> time.
+                </p>
+            </div>
+
+            
+        </div>
+
+       
+
+        <div class="parts">
+            <div class="introduction">
+                <h3>Dynamic programming solution</h3>
+                <p>
+                    If <i>C</i><sub>opt</sub> has at least one vertex in <i>Y</i>, we use dynamic programming instead. We try every endpoint <i>p</i><sub>bot</sub> &in; <i>Y</i> as our starting vertex. First, an O(<i>n</i> log <i>n</i>) rotational sweep checks if <i>p</i><sub>bot</sub> can actually be a vertex of a valid polygon, and we drop any segments that already contain <i>p</i><sub>bot</sub>. Next, we fix a horizontal ray &rho;<sub>0</sub> pointing left outside <i>C</i><sub>opt</sub>, guess the angle interval (&psi;<sub><i>j</i></sub>, &psi;<sub><i>j</i>+1</sub>) where the tangent at <i>p</i><sub>bot</sub> lies, and sort the remaining endpoints clockwise around <i>p</i><sub>bot</sub>.
+                    <br><br>
+                    Here we run into a circular dependency: the shape of the convex chain &Gamma;<sub><i>vw</i></sub> between two consecutive endpoints <i>v</i> and <i>w</i> depends on which segments it needs to cover, which in turn depends on the slope of its last edge. To get around this, each DP table entry <i>A</i>[<i>w</i>, <i>j</i>] keeps track of an angular prefix set <i>O</i>(<i>w</i>, <i>j</i>) of segments intersected past <i>w</i>. When moving from an earlier endpoint <i>v</i> &lt; <i>w</i>, we look at the remaining uncovered segments outside the triangle &Delta;(<i>p</i><sub>bot</sub>, <i>v</i>, <i>w</i>) and call <strong>Subroutine 2</strong> to find the shortest chain between <i>v</i> and <i>w</i>.
+                 </p>
+            </div>
+
+            <div id="illustration">
+                <h3>Illustration</h3>
+                <img src="images/illustration.png" alt="illustration image">
+            </div>
+        </div>
+        
+         <div class="finalPart">
+
+            <div class="introduction">
+                <h3>Complexity and results</h3>
+                <p>
+                    To get the final polygon, the algorithm compares the result of Subroutine 1 (O(<i>n</i><sup>6</sup> log <i>n</i>)) with the best solution found across all dynamic programming runs, and keeps whichever has the smaller perimeter.
+                    <br><br>
+                    Overall, there are O(<i>n</i><sup>2</sup>) DP instances (at most 2<i>n</i> choices for <i>p</i><sub>bot</sub> and <i>n</i> choices for the tangent angle), and each table has O(<i>n</i><sup>2</sup>) entries. Filling each entry takes O(<i>n</i><sup>2</sup>) transitions, where each transition calls Subroutine 2 in O(<i>n</i><sup>3</sup> log <i>n</i>) time. Multiplying everything together gives a total runtime of <strong>O(<i>n</i><sup>9</sup> log <i>n</i>)</strong>. Assuming P &ne; NP, this polynomial bound answers Question 1 from the paper by showing that the minimum-perimeter segment problem is not NP-hard.
+                </p>
+            </div>
+            
+        </div>
+
+    </div>
+
+    
 </div>
 
 <div id="demonstration">

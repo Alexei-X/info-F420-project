@@ -1,0 +1,51 @@
+@article{
+    Antoniadis_deBerg_Kisfaludi-Bak_Skarlatos_2025, 
+    title={Computing smallest convex intersecting polygons}, 
+    volume={16}, 
+    url={https://jocg.org/index.php/jocg/article/view/4441}, 
+    DOI={10.20382/jocg.v16i1a6}, 
+    abstractNote={&amp;lt;p&amp;gt;A polygon $C$ is an &amp;lt;em&amp;gt;intersecting polygon&amp;lt;/em&amp;gt; for a set $\mathcal{O}$ of objects in $\mathbb{R}^2$ if $C$ intersects each object in $\mathcal{O}$, where the polygon includes its interior. We study the problem of computing the minimum-perimeter intersecting polygon and the minimum-area convex intersecting polygon for a given set $\mathcal{O}$ of objects. We present an FPTAS for both problems for the case where $\mathcal{O}$ is a set of possibly intersecting convex polygons in the plane of total complexity $n$.&amp;lt;/p&amp;gt;
+&amp;lt;p&amp;gt;Furthermore, we present an exact polynomial-time algorithm for the minimum-perimeter intersecting polygon for the case where $\mathcal{O}$ is a set of $n$ possibly intersecting segments in the plane. So far, polynomial-time exact algorithms were only known for the minimum perimeter intersecting polygon of lines or of disjoint segments.&amp;lt;/p&amp;gt;}, 
+    number={1}, 
+    journal={Journal of Computational Geometry}, 
+    author={Antoniadis, Antonios and de Berg, Mark and Kisfaludi-Bak, Sándor and Skarlatos, Antonis}, 
+    year={2025}, 
+    month={Apr.}, 
+    pages={167-202} 
+}
+
+@inproceedings{10.1145/780542.780612,
+author = {Dror, Moshe and Efrat, Alon and Lubiw, Anna and Mitchell, Joseph S. B.},
+title = {Touring a sequence of polygons},
+year = {2003},
+isbn = {1581136749},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/780542.780612},
+doi = {10.1145/780542.780612},
+abstract = {Given a sequence of k polygons in the plane, a start point s, and a target point, t, we seek a shortest path that starts at s, visits in order each of the polygons, and ends at t. If the polygons are disjoint and convex, we give an algorithm running in time O(kn log (n/k)), where n is the total number of vertices specifying the polygons. We also extend our results to a case in which the convex polygons are arbitrarily intersecting and the subpath between any two consecutive polygons is constrained to lie within a simply connected region; the algorithm uses O(nk2 log n) time. Our methods are simple and allow shortest path queries from s to a query point t to be answered in time O(k log n + m), where m is the combinatorial path length. We show that for nonconvex polygons this "touring polygons" problem is NP-hard.The touring polygons problem is a strict generalization of some classic problems in computational geometry, including the safari problem, the zoo-keeper problem, and the watchman route problem in a simple polygon. Our new results give an order of magnitude improvement in the running times of the safari problem and the watchman route problem: We solve the safari problem in O(n2 log n) time and the watchman route problem (through a fixed point s) in time O(n3 log n), compared with the previous time bounds of O(n3) and O(n4), respectively.},
+booktitle = {Proceedings of the Thirty-Fifth Annual ACM Symposium on Theory of Computing},
+pages = {473–482},
+numpages = {10},
+keywords = {NP-hardness, polygons, safari route, shortest path, traveling salesman problem, watchman route},
+location = {San Diego, CA, USA},
+series = {STOC '03}
+}
+
+@InProceedings{10.1007/3-540-57568-5_235,
+author="Carlsson, Svante
+and Jonsson, H{\aa}kan
+and Nilsson, Bengt J.",
+editor="Ng, K. W.
+and Raghavan, P.
+and Balasubramanian, N. V.
+and Chin, F. Y. L.",
+title="Finding the shortest watchman route in a simple polygon",
+booktitle="Algorithms and Computation",
+year="1993",
+publisher="Springer Berlin Heidelberg",
+address="Berlin, Heidelberg",
+pages="58--67",
+abstract="We present the first polynomial-time algorithm that finds the shortest route in a simple polygon such that all points of the polygon is visible from some point on the route. This route is sometimes called the shortest watchman route, and it does not allow any restrictions on the route or on the simple polygon. Our algorithm runs in O(n3) time.",
+isbn="978-3-540-48233-8"
+}

@@ -18,7 +18,7 @@
         <p>
            The goal of this project is to understand and partially implement an algorithm to compute the smallest-perimeter intersecting
             polygon for a set of segments in the plane. <br>
-            This algorithm, which is an FPTAS, was presented in the paper ``Antonios Antoniadis, Mark de Berg, Sándor Kisfaludi-Bak, 
+            This polynomial-time algorithm was presented in the paper ``Antonios Antoniadis, Mark de Berg, Sándor Kisfaludi-Bak, 
             and Antonis Skarlatos. Computing smallest convex intersecting polygons´´ 
             <br>(DOI : <a href="https://doi.org/10.20382/jocg.v16i1a6"> https://doi.org/10.20382/jocg.v16i1a6</a>)
             <br>This paper also presents an approximation algorithm for the minimum-area intersecting polygon, but we made the choice to 
@@ -56,7 +56,7 @@
                 <p>
                     <strong>Subroutine 1</strong> deals with the case where <i>C</i><sub>opt</sub> has no vertices in <i>Y</i> at all, so every corner of the polygon lies somewhere in the middle of a segment. If such a polygon exists, we can pick any of its vertices <i>u</i> as both the start and end point of a closed TPP loop.
                     <br><br>
-                    This case turns out to be equivalent to the shortest watchman route problem. Using a known algorithm for watchman tours, we can find O(<i>n</i><sup>3</sup>) candidate "event points", and at least one of them is guaranteed to be a vertex of <i>C</i><sub>opt</sub>. For each candidate, we run the half-plane TPP solver in O(<i>n</i><sup>3</sup> log <i>n</i>) time. We then check in O(<i>n</i><sup>2</sup>) time that the output is convex, hits every segment, and has no vertices in <i>Y</i>. Testing all O(<i>n</i><sup>3</sup>) candidates gives a total time of <strong>O(<i>n</i><sup>6</sup> log <i>n</i>)</strong>.
+                    Using a known algorithm for watchman tours, we can find O(<i>n</i><sup>3</sup>) candidate "event points", and at least one of them is guaranteed to be a vertex of <i>C</i><sub>opt</sub>. For each candidate, we run the half-plane TPP solver in O(<i>n</i><sup>3</sup> log <i>n</i>) time. We then check in O(<i>n</i><sup>2</sup>) time that the output is convex, hits every segment, and has no vertices in <i>Y</i>. Testing all O(<i>n</i><sup>3</sup>) candidates gives a total time of <strong>O(<i>n</i><sup>6</sup> log <i>n</i>)</strong>.
                  </p>
             </div>
 
@@ -77,7 +77,9 @@
                 <p>
                     <strong>Subroutine 2</strong> handles a more specific case: we are already given two fixed points <i>u</i>, <i>v</i> &in; &#8477;<sup>2</sup> and a subset of segments <i>O'</i> &subseteq; <i>O</i>. The goal is to find the minimum-perimeter intersecting polygon that has <i>uv</i> as one of its edges and no other vertices in <i>Y</i>.
                     <br><br>
-                    Since <i>u</i> and <i>v</i> are fixed from the start, we do not need to test O(<i>n</i><sup>3</sup>) starting points. We just run the half-plane TPP solver once from <i>u</i> to <i>v</i> on <i>O'</i>, verify that the polygon actually intersects all segments in <i>O'</i>, and make sure none of its intermediate vertices are in <i>Y</i>. This takes <strong>O(<i>n</i><sup>3</sup> log <i>n</i>)</strong> time.
+                    Since <i>u</i> and <i>v</i> are fixed from the start, we do not need to test O(<i>n</i><sup>3</sup>) starting points. We just run the half-plane TPP solver once from <i>u</i> to <i>v</i> on <i>O'</i>, verify that the polygon actually intersects all segments in <i>O'</i>, and make sure none of its intermediate vertices are in <i>Y</i>. This takes <strong>O(<i>n</i><sup>3</sup> log <i>n</i>)</strong> time. 
+                            <br> This subroutine is too restrictive to solve the full problem alone because it forbids any <i>Y</i>-vertex between <i>u</i> and <i>u</i>, but it is exactly the primitive the dynamic program below calls to fill in each chain between two consecutive 
+                            <i>Y</i>-vertices.
                 </p>
             </div>
 
@@ -90,7 +92,7 @@
             <div class="introduction">
                 <h3>Dynamic programming solution</h3>
                 <p>
-                    If <i>C</i><sub>opt</sub> has at least one vertex in <i>Y</i>, we use dynamic programming instead. We try every endpoint <i>p</i><sub>bot</sub> &in; <i>Y</i> as our starting vertex. First, an O(<i>n</i> log <i>n</i>) rotational sweep checks if <i>p</i><sub>bot</sub> can actually be a vertex of a valid polygon, and we drop any segments that already contain <i>p</i><sub>bot</sub>. Next, we fix a horizontal ray &rho;<sub>0</sub> pointing left outside <i>C</i><sub>opt</sub>, guess the angle interval (&psi;<sub><i>j</i></sub>, &psi;<sub><i>j</i>+1</sub>) where the tangent at <i>p</i><sub>bot</sub> lies, and sort the remaining endpoints clockwise around <i>p</i><sub>bot</sub>.
+                    If <i>C</i><sub>opt</sub> has at least one vertex in <i>Y</i>, we use dynamic programming. We try every endpoint <i>p</i><sub>bot</sub> &in; <i>Y</i> as our starting vertex. First, an O(<i>n</i> log <i>n</i>) rotational sweep checks if <i>p</i><sub>bot</sub> can actually be a vertex of a valid polygon, and we drop any segments that already contain <i>p</i><sub>bot</sub>. Next, we fix a horizontal ray &rho;<sub>0</sub> pointing left outside <i>C</i><sub>opt</sub>, guess the angle interval (&psi;<sub><i>j</i></sub>, &psi;<sub><i>j</i>+1</sub>) where the tangent at <i>p</i><sub>bot</sub> lies, and sort the remaining endpoints clockwise around <i>p</i><sub>bot</sub>.
                     <br><br>
                     Here we run into a circular dependency: the shape of the convex chain &Gamma;<sub><i>vw</i></sub> between two consecutive endpoints <i>v</i> and <i>w</i> depends on which segments it needs to cover, which in turn depends on the slope of its last edge. To get around this, each DP table entry <i>A</i>[<i>w</i>, <i>j</i>] keeps track of an angular prefix set <i>O</i>(<i>w</i>, <i>j</i>) of segments intersected past <i>w</i>. When moving from an earlier endpoint <i>v</i> &lt; <i>w</i>, we look at the remaining uncovered segments outside the triangle &Delta;(<i>p</i><sub>bot</sub>, <i>v</i>, <i>w</i>) and call <strong>Subroutine 2</strong> to find the shortest chain between <i>v</i> and <i>w</i>.
                  </p>

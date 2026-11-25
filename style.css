@@ -4,6 +4,10 @@ html, body {
     background-color: rgba(160, 79, 213, 0.2);
 }
 
+body{
+    height: 10vh;
+}
+
 h3 {
     font-family: 'Segoe UI', system-ui, sans-serif;
     font-size: 1.4rem;
@@ -168,6 +172,33 @@ ul {
 #demo_button:active {
     transform: translateY(0);
 }
+
+#demoDisplayDiv{
+display: block;
+}
+
+#demoFrame{
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+#demoFrame html{
+    overflow:hidden;
+}
+
+#demoScriptWrapper{
+    margin: 20px;
+    padding: 2rem 2.5rem;
+    background: #16162a;
+    border: 4px solid #7f5af0;
+    border-radius: 0 8px 8px 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+
+}
+
 
 .parts{
     display: flex;
